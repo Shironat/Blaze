@@ -1,0 +1,13 @@
+body {
+    background: black;
+    color: cyan;
+    font-family: monospace;
+}
+
+#status {
+    font-size: 40px;
+}
+
+#response {
+    margin-top: 20px;
+}
