@@ -6,15 +6,19 @@ from automation.actions import execute
 
 detector = WakeWordDetector("shiro.ppn")
 
+print("Jarvis (Gemini) ativo e ouvindo...")
+
 while True:
     if detector.listen():
         print("Wake detected")
         command = listen_command()
-        intent = parse_command(command)
+        
+        if command: # Verifica se o áudio não veio vazio
+            intent = parse_command(command)
 
-        if intent["intent"] == "ai_only":
-            response = ask_ai(command)
-            print(response)
-        else:
-            result = execute(intent)
-            print(result)
+            if intent["intent"] == "ai_only":
+                response = ask_ai(command)
+                print(f"Jarvis: {response}")
+            else:
+                result = execute(intent)
+                print(result)
