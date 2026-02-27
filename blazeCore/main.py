@@ -13,7 +13,7 @@ while True:
         print("Wake detected")
         command = listen_command()
         
-        if command: # Verifica se o áudio não veio vazio
+        if command:
             intent = parse_command(command)
 
             if intent["intent"] == "ai_only":
