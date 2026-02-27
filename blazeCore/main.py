@@ -6,7 +6,7 @@ from automation.actions import execute
 
 detector = WakeWordDetector("shiro.ppn")
 
-print("Jarvis (Gemini) ativo e ouvindo...")
+print("Blaze ativo e ouvindo...")
 
 while True:
     if detector.listen():
