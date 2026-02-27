@@ -1,14 +1,16 @@
-from openai import OpenAI
-from config import OPENAI_API_KEY
+import google.generativeai as genai
+from config import GEMINI_API_KEY
 
-client = OpenAI(api_key=OPENAI_API_KEY)
+genai.configure(api_key=GEMINI_API_KEY)
+
+model = genai.GenerativeModel(
+    model_name="gemini-1.5-flash",
+    system_instruction="Você é um assistente escolar estilo Jarvis, mas se chama Blaze e é integrado à TV da escola. Seja prestativo e direto."
+)
 
 def ask_ai(prompt):
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": "Você é um assistente doméstico estilo Jarvis."},
-            {"role": "user", "content": prompt}
-        ]
-    )
-    return response.choices[0].message.content
+    try:
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"Erro na IA: {str(e)}"
